@@ -12,17 +12,16 @@
 	</header>
 
 	<div class="row">
-		<div>
-			<h3>Our Most Popular Campgrounds</h3>
-		</div>
+		<% campgrounds.forEach(function(campground){ %>
+				<div class="col-md-3 col-sm-6">
+					<div class="thumbnail">
+						<img src="<%=campground.image%>">
+					</div>
+					<h4><%= campground.name%></h4>
+				</div>
+		<% }); %>
 	</div>
 
-	<% campgrounds.forEach(function(campground){ %>
-			<div>
-				<h4><%= campground.name%></h4>
-				<img src="<%=campground.image%>">
-			</div>
-	<% }); %>
 </div>
 
 <% include partials/footer%>
