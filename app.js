@@ -3,7 +3,7 @@ var app=express();
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
 
-mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true});
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -14,23 +14,6 @@ var campgrounSchema=new mongoose.Schema({
 });
 
 var Campground=mongoose.model("Campground",campgrounSchema);
-
-/*Campground.create(
-{		
-		name: "Granite Hill", 
-		image: "https://pixabay.com/get/ef3cb00b2af01c22d2524518b7444795ea76e5d004b014459cf9c07cafe9b3_340.jpg"
-}
-	, function(err, campground){
-			if(err)
-			{
-				console.log(err);
-			}
-			else
-			{
-				console.log("Newly created campground: ");
-				console.log(campground);
-			}
-	});*/
 
 app.get("/",function(req,res){
 	res.render("landing");
@@ -71,6 +54,11 @@ app.post("/campgrounds",function(req,res){
 
 app.get("/campgrounds/new", function(req,res){
 	res.render("new");
+});
+
+app.get("/campgrounds/:id", function(req,res)
+{
+	res.send("Thiis will be the show page one day");
 });
 
 app.listen(3000,"127.0.0.1",function(){
