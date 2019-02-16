@@ -10,10 +10,28 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Schema Setup
 var campgrounSchema=new mongoose.Schema({
 	name: String,
-	image: String
+	image: String,
+	description: String
 });
 
 var Campground=mongoose.model("Campground",campgrounSchema);
+
+/*Campground.create(
+{
+	name: "Granite Hill",
+	image: "https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg",
+	description: "This is a hue granite hill, no bathrooms. No water. Beautiful granite!"
+}, function(err,campground){
+	if(err)
+	{
+		console.log(err);
+	}
+	else
+	{
+		console.log("Newly created campground: ");
+		console.log(campground);
+	}
+});*/
 
 app.get("/",function(req,res){
 	res.render("landing");
@@ -56,9 +74,12 @@ app.get("/campgrounds/new", function(req,res){
 	res.render("new");
 });
 
+//SHOW- shows more info about one campground
 app.get("/campgrounds/:id", function(req,res)
-{
-	res.send("Thiis will be the show page one day");
+{	
+	//find the camoground with provided ID
+	//render show template with that campground
+	res.render("show");
 });
 
 app.listen(3000,"127.0.0.1",function(){
