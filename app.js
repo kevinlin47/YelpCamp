@@ -46,7 +46,7 @@ app.get("/campgrounds",function(req,res){
 		}
 		else
 		{
-			res.render("campgrounds",{campgrounds:allcampgrounds});
+			res.render("index",{campgrounds:allcampgrounds});
 		}
 	})
 });
@@ -78,8 +78,16 @@ app.get("/campgrounds/new", function(req,res){
 app.get("/campgrounds/:id", function(req,res)
 {	
 	//find the camoground with provided ID
-	//render show template with that campground
-	res.render("show");
+	Campground.findById(req.params.id, function(err, foundCampground){
+		if(err)
+		{
+			console.log(err);
+		}
+		else
+		{
+			res.render("show", {campground:foundCampground});
+		}
+	});
 });
 
 app.listen(3000,"127.0.0.1",function(){
