@@ -5,7 +5,7 @@ var campgrounSchema=new mongoose.Schema({
 	image: String,
 	description: String,
 	comments: [{
-		type: mongoose.Schema.Type.ObjectId,
+		type: mongoose.Schema.Types.ObjectId,
 		ref: "Comment"
 	}]
 });
