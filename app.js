@@ -81,7 +81,9 @@ app.get("/campgrounds/:id/comments/new", function(req, res){
 	});
 });
 
-app.post("")
+app.post("/campgrounds/:id/comments", function(req, res){
+	
+});
 
 app.listen(3000,"127.0.0.1",function(){
 	console.log("YelpCamp Server Started");
