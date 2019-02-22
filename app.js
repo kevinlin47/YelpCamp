@@ -11,23 +11,6 @@ mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true})
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
-/*Campground.create(
-{
-	name: "Granite Hill",
-	image: "https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg",
-	description: "This is a hue granite hill, no bathrooms. No water. Beautiful granite!"
-}, function(err,campground){
-	if(err)
-	{
-		console.log(err);
-	}
-	else
-	{
-		console.log("Newly created campground: ");
-		console.log(campground);
-	}
-});*/
-
 app.get("/",function(req,res){
 	res.render("landing");
 });
@@ -73,7 +56,7 @@ app.get("/campgrounds/new", function(req,res){
 app.get("/campgrounds/:id", function(req,res)
 {	
 	//find the camoground with provided ID
-	Campground.findById(req.params.id, function(err, foundCampground){
+	Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
 		if(err)
 		{
 			console.log(err);
