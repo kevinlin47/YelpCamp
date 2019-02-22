@@ -2,19 +2,11 @@ var express=require("express");
 var app=express();
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
+var Campground=require("./models/campground");
 
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true});
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended: true}));
-
-//Schema Setup
-var campgrounSchema=new mongoose.Schema({
-	name: String,
-	image: String,
-	description: String
-});
-
-var Campground=mongoose.model("Campground",campgrounSchema);
 
 /*Campground.create(
 {
