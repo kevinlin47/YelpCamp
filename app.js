@@ -69,8 +69,19 @@ app.get("/campgrounds/:id", function(req,res)
 
 //Comments Routes
 app.get("/campgrounds/:id/comments/new", function(req, res){
-	res.render("comments/new")
+	Campground.findById(req.params.id, function(err, foundCampground){
+		if(err)
+		{
+			console.log(err);
+		}
+		else
+		{
+			res.render("comments/new", {campground:foundCampground});
+		}
+	});
 });
+
+app.post("")
 
 app.listen(3000,"127.0.0.1",function(){
 	console.log("YelpCamp Server Started");
