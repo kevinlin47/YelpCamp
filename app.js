@@ -47,7 +47,7 @@ app.get("/campgrounds",function(req,res){
 		}
 		else
 		{
-			res.render("campgrounds/index",{campgrounds:allcampgrounds, currentUser:req.user});
+			res.render("campgrounds/index",{campgrounds:allcampgrounds});
 		}
 	})
 });
