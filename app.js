@@ -100,7 +100,7 @@ app.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res){
 	});
 });
 
-app.post("/campgrounds/:id/comments", function(req, res){
+app.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
 
 	Campground.findById(req.params.id, function(err, campground){
 		if(err)
