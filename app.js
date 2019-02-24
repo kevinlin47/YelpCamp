@@ -87,7 +87,7 @@ app.get("/campgrounds/:id", function(req,res)
 });
 
 //Comments Routes
-app.get("/campgrounds/:id/comments/new", function(req, res){
+app.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res){
 	Campground.findById(req.params.id, function(err, foundCampground){
 		if(err)
 		{
@@ -172,6 +172,14 @@ app.get("/logout", function(req, res){
 	req.logout();
 	res.redirect("/campgrounds");
 });
+
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated())
+	{
+		return next();
+	}
+	res.redirect("/login");
+}
 
 app.listen(3000,"127.0.0.1",function(){
 	console.log("YelpCamp Server Started");
