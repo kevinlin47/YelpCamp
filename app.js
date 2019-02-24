@@ -160,8 +160,11 @@ app.get("/login", function(req, res){
 });
 
 //handle login logic
-app.post("/login", function(req, res){
-	
+app.post("/login", passport.authenticate("local", 
+	{
+		successRedirect: "/campgrounds",
+		failureRedirect: "/login"
+	}), function(req, res){
 });
 
 app.listen(3000,"127.0.0.1",function(){
