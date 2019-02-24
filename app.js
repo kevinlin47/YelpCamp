@@ -34,6 +34,7 @@ app.get("/",function(req,res){
 });
 
 app.get("/campgrounds",function(req,res){
+
 	// Get all campgrounds from DB
 	Campground.find({}, function(err,allcampgrounds){
 		if (err)
@@ -42,7 +43,7 @@ app.get("/campgrounds",function(req,res){
 		}
 		else
 		{
-			res.render("campgrounds/index",{campgrounds:allcampgrounds});
+			res.render("campgrounds/index",{campgrounds:allcampgrounds, currentUser:req.user});
 		}
 	})
 });
