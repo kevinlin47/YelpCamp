@@ -134,7 +134,7 @@ app.get("/register", function(req, res){
 });
 
 //handle sign up logic
-app.post("/regiser", function(req, res){
+app.post("/register", function(req, res){
 	var newUser=new User({
 		username: req.body.username
 	});
