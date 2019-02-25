@@ -2,6 +2,7 @@ var express=require("express");
 var router=express.Router();
 var Campground=require("../models/campground");
 
+//INDEX - show all campgrounds
 router.get("/",function(req,res){
 
 	// Get all campgrounds from DB
@@ -17,6 +18,7 @@ router.get("/",function(req,res){
 	})
 });
 
+//CREATE - add new campground to DB
 router.post("/",function(req,res){
 	var name=req.body.name;
 	var image=req.body.image;
@@ -36,6 +38,7 @@ router.post("/",function(req,res){
 	});
 });
 
+//NEW - show form to create new campground
 router.get("/new", function(req,res){
 	res.render("campgrounds/new");
 });
