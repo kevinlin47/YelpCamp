@@ -37,6 +37,10 @@ app.use(function(req, res, next){
 	next();
 });
 
+app.use(indexRoutes);
+app.use(commentRoutes);
+app.use(campgroundRoutes);
+
 app.get("/",function(req,res){
 	res.render("landing");
 });
