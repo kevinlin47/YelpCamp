@@ -1,4 +1,7 @@
-app.get("/campgrounds",function(req,res){
+var express=require("express");
+var router=express.Router();
+
+router.get("/campgrounds",function(req,res){
 
 	// Get all campgrounds from DB
 	Campground.find({}, function(err,allcampgrounds){
@@ -51,3 +54,5 @@ app.get("/campgrounds/:id", function(req,res)
 		}
 	});
 });
+
+module.exports=router;

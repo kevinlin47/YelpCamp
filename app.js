@@ -9,6 +9,10 @@ var passport=require("passport");
 var LocalStrategy=require("passport-local");
 var User=require("./models/user");
 
+var campgroundRoutes=require("./routes/campgrounds");
+var commentRoutes=require("./routes/comments");
+var indexRoutes=require("./routes/index")
+
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true});
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended: true}));
