@@ -63,6 +63,10 @@ router.get("/:id", function(req,res)
 	});
 });
 
+//Edit campground route
+
+//Update campground route
+
 //middleware
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated())
