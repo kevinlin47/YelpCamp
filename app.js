@@ -8,7 +8,7 @@ var seedDB=require("./seeds")
 var passport=require("passport");
 var LocalStrategy=require("passport-local");
 var User=require("./models/user");
-Var methodOverride=require("method-ovverride");
+var methodOverride=require("method-ovverride");
 
 var campgroundRoutes=require("./routes/campgrounds");
 var commentRoutes=require("./routes/comments");
