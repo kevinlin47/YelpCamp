@@ -79,7 +79,7 @@ router.get("/:id/edit", function(req, res){
 
 //Update campground route
 router.put("/:id", function(req, res){
-	Campground.findOneAndUpdate(req.params.id, req.body.campground, function(err, campground){
+	Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, campground){
 		if(err)
 		{
 			res.redirect("/campgrounds");
