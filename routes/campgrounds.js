@@ -91,6 +91,9 @@ router.put("/:id", function(req, res){
 	});
 });
 
+//Delete campground route
+
+
 //middleware
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated())
