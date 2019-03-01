@@ -64,31 +64,10 @@ router.get("/:id", function(req,res)
 });
 
 //Edit campground route
-router.get("/:id/edit", function(req, res){
-	if(req.isAuthenticated())
-	{
-		Campground.findById(req.params.id, function(err, foundCampground){
-			if(err)
-			{
-				res.redirect("/campgrounds");
-			}
-			else
-			{	
-				if(foundCampground.author.id.equals(req.user._id))
-				{
-					res.render("campgrounds/edit", {campground: foundCampground});
-				}
-				else
-				{
-					res.send("You do not have persmission");
-				}
-			}
-		});
-	}
-	else
-	{
-		console.log("You need to be loggined in");
-	}
+router.get("/:id/edit", checkCampgroundOwnership, function(req, res){
+	Campground.findById(req.params.id, function(err, foundCampground){
+	res.render("campgrounds/edit", {campground: foundCampground});
+	});
 });
 
 //Update campground route
@@ -126,6 +105,33 @@ function isLoggedIn(req, res, next){
 		return next();
 	}
 	res.redirect("/login");
+}
+
+function checkCampgroundOwnership(req, res, next){
+	if(req.isAuthenticated())
+	{
+		Campground.findById(req.params.id, function(err, foundCampground){
+			if(err)
+			{
+				res.redirect("back");
+			}
+			else
+			{	
+				if(foundCampground.author.id.equals(req.user._id))
+				{
+					next();
+				}
+				else
+				{
+					res.redirect("back");
+				}
+			}
+		});
+	}
+	else
+	{
+		red.redirect("back");
+	}
 }
 
 module.exports=router;
