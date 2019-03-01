@@ -92,7 +92,9 @@ router.put("/:id", function(req, res){
 });
 
 //Delete campground route
-
+router.delete("/:id", function(req, res){
+	
+});
 
 //middleware
 function isLoggedIn(req, res, next){
