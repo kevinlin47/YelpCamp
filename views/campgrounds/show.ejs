@@ -40,6 +40,9 @@
 								<%= comment.text %>
 							</p>
 							<a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit" class="btn btn-xs btn-warning">Edit</a>
+							<form action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="post">
+								<input type="submit" name="" class="btn btn-xs btn-danger">
+							</form>
 						</div>
 					</div>
 				<% }); %>

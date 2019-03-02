@@ -78,6 +78,12 @@ router.put("/:comment_id", function(req, res){
 	});
 });
 
+
+//Comment Delete
+router.delete("/:comment_id", function(req, res){
+	
+});
+
 //middleware
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated())
