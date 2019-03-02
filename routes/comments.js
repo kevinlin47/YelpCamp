@@ -65,9 +65,9 @@ router.get("/:comment_id/edit", function(req, res){
 });
 
 //Comment Update
-router.put(){
+/*router.put(){
 
-}
+}*/
 
 //middleware
 function isLoggedIn(req, res, next){
