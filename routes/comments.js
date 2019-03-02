@@ -80,7 +80,7 @@ router.put("/:comment_id", checkCommentOwnership, function(req, res){
 
 
 //Comment Delete
-router.delete("/:comment_id", function(req, res){
+router.delete("/:comment_id", checkCommentOwnership, function(req, res){
 	Comment.findByIdAndRemove(req.params.comment_id, function(err, deleteComment){
 		if(err)
 		{
