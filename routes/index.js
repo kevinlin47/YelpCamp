@@ -2,6 +2,7 @@ var express=require("express");
 var router=express.Router();
 var passport=require("passport");
 var User=require("../models/user");
+var middleware=require("../middleware");
 
 //root route
 router.get("/",function(req,res){
@@ -36,7 +37,7 @@ router.post("/register", function(req, res){
 
 //show login form
 router.get("/login", function(req, res){
-	res.render("login");
+	res.render("login", {message: req.flash("error")});
 });
 
 //handle login logic
@@ -52,14 +53,5 @@ router.get("/logout", function(req, res){
 	req.logout();
 	res.redirect("/campgrounds");
 });
-
-//middleware
-function isLoggedIn(req, res, next){
-	if(req.isAuthenticated())
-	{
-		return next();
-	}
-	res.redirect("/login");
-}
 
 module.exports=router;
