@@ -50,6 +50,7 @@ router.post("/", isLoggedIn, function(req, res){
 	});
 });
 
+//Comment Edit 
 router.get("/:comment_id/edit", function(req, res){
 	Comment.findById(req.params.comment_id, function(err, foundComment){
 		if(err)
@@ -58,10 +59,15 @@ router.get("/:comment_id/edit", function(req, res){
 		}
 		else
 		{
-			res.render("/comments/edit", {campground_id: req.params.id, comment: foundComment});
+			res.render("comments/edit", {campground_id: req.params.id, comment: foundComment});
 		}
 	});
 });
+
+//Comment Update
+router.put(){
+
+}
 
 //middleware
 function isLoggedIn(req, res, next){
