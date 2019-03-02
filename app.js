@@ -2,6 +2,7 @@ var express=require("express");
 var app=express();
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
+var flash=require("connect-flash");
 var Campground=require("./models/campground");
 var Comment=require("./models/comment");
 var seedDB=require("./seeds")
