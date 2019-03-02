@@ -81,7 +81,16 @@ router.put("/:comment_id", function(req, res){
 
 //Comment Delete
 router.delete("/:comment_id", function(req, res){
-	
+	Comment.findByIdAndRemove(req.params.comment_id, function(err, deleteComment){
+		if(err)
+		{
+			res.redirect("back");
+		}
+		else
+		{
+			res.redirect("/campgrounds/"+req.params.id);
+		}
+	});
 });
 
 //middleware
