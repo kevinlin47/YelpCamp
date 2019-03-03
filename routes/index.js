@@ -24,6 +24,7 @@ router.post("/register", function(req, res){
 		if(err)
 		{
 			console.log(err);
+			req.flash("error", err);
 			return res.render("register");
 		}
 		else
