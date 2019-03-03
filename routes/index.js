@@ -11,7 +11,7 @@ router.get("/",function(req,res){
 
 //show register form
 router.get("/register", function(req, res){
-	res.render("register");
+	res.render("register", {page: "register"});
 });
 
 //handle sign up logic
