@@ -48,7 +48,6 @@ router.post("/login", passport.authenticate("local",
 		successRedirect: "/campgrounds",
 		failureRedirect: "/login"
 	}), function(req, res){
-	req.flash("success", "Welcome back "+req.body.username);
 });
 
 //logout route
