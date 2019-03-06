@@ -11,7 +11,7 @@ var options={
 	formatter: null
 };
 
-var geocoder=NodeGeocoder(options);
+var geocoder=NodeGeoCoder(options);
 
 //INDEX - show all campgrounds
 router.get("/",function(req,res){
