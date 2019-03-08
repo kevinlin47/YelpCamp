@@ -12,7 +12,11 @@
 				Maecenas sagittis, nulla eget lacinia tincidunt, sapien quam scelerisque neque, sollicitudin semper mauris diam in arcu. Sed sagittis ex in aliquam dapibus. Praesent iaculis, risus quis fermentum fermentum, urna risus ultricies nisl, ac aliquet magna urna quis nisi. Proin nisl neque, porttitor vel lobortis vel, elementum id odio. Vestibulum lacinia nisl metus, vel mattis odio bibendum eget. Vestibulum dapibus est et ex tempus pulvinar. Phasellus consectetur, sapien rhoncus hendrerit congue, ex nibh aliquet magna, at suscipit lacus ligula tempus nunc. Maecenas congue erat risus, ut facilisis lorem pretium ut. Nullam ut dolor sagittis, tempor lacus ut, rutrum nisl. Sed ut sem mi. Etiam hendrerit nunc sed fringilla fringilla. Nulla faucibus ullamcorper pharetra.
 	</div>
 	<div class="col-md-8">
-		
+		<ul>
+			<% campgrounds.forEach(campground{ %>
+					<li><a href="/campgrounds/campground.id"><%= campground.name %></a></li>
+			<% }); %>
+		</ul>
 	</div>
 </div>
 
