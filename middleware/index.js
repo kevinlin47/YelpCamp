@@ -13,7 +13,7 @@ middlewareObj.checkCampgroundOwnership=function(req, res, next){
 			}
 			else
 			{	
-				if(foundCampground.author.id.equals(req.user._id))
+				if(foundCampground.author.id.equals(req.user._id) || req.user.isAdmin)
 				{
 					next();
 				}
