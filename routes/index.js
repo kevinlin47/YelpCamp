@@ -57,8 +57,16 @@ router.post("/login", passport.authenticate("local",
 		failureRedirect: "/login",
 		failureFlash: true,
 	}), function(req, res){
-				req.flash("success", "Welcome back "+req.user.username);
-				res.redirect("/campgrounds");
+				if(req.user.isAdmin)
+				{
+					req.flash("success", "Welcome back "+req.user.username+"\n Logged in as administrator");
+					res.redirect("/campgrounds");
+				}
+				else
+				{
+					req.flash("success", "Welcome back "+req.user.username);
+					res.redirect("/campgrounds");
+				}
 });
 
 //logout route
