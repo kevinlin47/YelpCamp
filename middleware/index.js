@@ -42,7 +42,7 @@ middlewareObj.checkCommentOwnership=function(req, res, next){
 			}
 			else
 			{	
-				if(foundComment.author.id.equals(req.user._id))
+				if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin)
 				{
 					next();
 				}
