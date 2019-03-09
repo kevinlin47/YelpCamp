@@ -24,8 +24,13 @@ router.get("/",function(req,res){
         console.log(err);
       }
       else
-      {
-        res.render("campgrounds/index",{campgrounds:allcampgrounds, page:"campgrounds"});
+      { 
+        var noMatch;
+        if(allcampgrounds.length==0)
+        {
+          noMatch="No campgrounds match that query, please try again.";
+        }
+        res.render("campgrounds/index",{campgrounds:allcampgrounds, page:"campgrounds", noMatch:noMatch});
       }
     });
   }
