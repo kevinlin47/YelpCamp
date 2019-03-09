@@ -15,6 +15,7 @@ var geocoder=NodeGeoCoder(options);
 
 //INDEX - show all campgrounds
 router.get("/",function(req,res){
+  var noMatch;
   if(req.query.search)
   { 
       const regex=new RegExp(escapeRegex(req.query.search), "gi");
@@ -25,7 +26,6 @@ router.get("/",function(req,res){
       }
       else
       { 
-        var noMatch;
         if(allcampgrounds.length==0)
         {
           noMatch="No campgrounds match that query, please try again.";
