@@ -121,9 +121,9 @@ router.post("/forgot", function(req, res, next){
 				to: user.email,
 				from: "kevin.java.lin@gmail.com",
 				subject: "Password Reset",
-				text: "You are receving this because you (or someone else) have requested the rest of the password for your account.\n\n"
+				text: "You are receving this because you (or someone else) have requested the reset of the password for your account.\n\n"
 				+ "Please click on the following link or paste this into your browswer to complete the process:\n\n" +
-				"http://"+ req.header.host+ "/reset/" + token + "\n\n" +
+				"http://"+ req.headers.host + "/reset/" + token + "\n\n" +
 				"If you did not request this, please ignore this email and your password will remain unchanged.\n"
 			};
 			smtpTransport.sendMail(mailOptions, function(err){
