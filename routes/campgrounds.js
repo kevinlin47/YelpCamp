@@ -16,8 +16,9 @@ var geocoder=NodeGeoCoder(options);
 //INDEX - show all campgrounds
 router.get("/",function(req,res){
   if(req.query.search)
-  {
-      Campground.find({}, function(err,allcampgrounds){
+  { 
+      const regex=new RegExp(escapeRegex(req.query.search), "gi");
+      Campground.find({name: regex}, function(err,allcampgrounds){
       if (err)
       {
         console.log(err);
@@ -146,6 +147,6 @@ router.delete("/:id", middleware.checkCampgroundOwnership, function(req, res){
 
 function escapeRegex(text){
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&");
-}
+};
 
 module.exports=router;
