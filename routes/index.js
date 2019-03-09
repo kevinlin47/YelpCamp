@@ -143,6 +143,21 @@ router.post("/forgot", function(req, res, next){
 		});
 });
 
+router.get("/reset/:token", function(req, res){
+	User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, 
+		function(err, user){
+			if(!user)
+			{
+				req.flash("error", "Password reset token is invalid or has expired.");
+				return res.redirect("/forgot");
+			}
+			else
+			{
+				res.render("reset", {token: req.params.token});
+			}
+		});
+});
+
 // User profile
 router.get("/users/:id", function(req, res){
 	User.findById(req.params.id, function(err, foundUser){
