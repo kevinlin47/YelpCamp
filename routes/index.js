@@ -80,6 +80,11 @@ router.get("/logout", function(req, res){
 	res.redirect("/campgrounds");
 });
 
+//forgot password
+router.get("/forgot", function(req, res){
+	res.render("forgot");
+})
+
 // User profile
 router.get("/users/:id", function(req, res){
 	User.findById(req.params.id, function(err, foundUser){
