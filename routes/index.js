@@ -158,60 +158,54 @@ router.get("/reset/:token", function(req, res){
 		});
 });
 
-router.post("/reset/:token", function(req, res){
-	async.waterfall([
-		function(done){
-			User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires: {$gt: Date.now()}}, function(err, user){
-				if(!user)
-				{
-					req.flash("error", "Password reset token is invalid or has expired.");
-					return res.redirect("back");
-				}
-				else
-				{
-					if(req.body.password===req.body.confirm)
-					{
-						user.setPassword(req.body.password, function(err){
-							user.resetPasswordToken=undefined;
-							user.resetPasswordExpires=undefined;
+router.post('/reset/:token', function(req, res) {
+  async.waterfall([
+    function(done) {
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+        if (!user) {
+          req.flash('error', 'Password reset token is invalid or has expired.');
+          return res.redirect('back');
+        }
+        if(req.body.password === req.body.confirm) {
+          user.setPassword(req.body.password, function(err) {
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpires = undefined;
 
-							user.save(function(err){
-								req.logIn(user, function(err){
-									return done(err, user);
-								});
-							});
-						});
-					}
-					else
-					{
-						req.flash("error", "Passwords do not match.");
-						return res.redirect("back");
-					}
-				}
-			});
-		},
-		function(user, done){
-			var smtpTransport=nodemailer.createTransport({
-				service: "Gmail",
-				auth: {
-					user: "kevin.java.lin@gmail.com",
-					pass: process.env.GMAILPW
-				}
-			});
-			var mailOptions={
-				to: user.email,
-				from: "kevin.java.lin@gmail.com",
-				subject: "Your password has been changes",
-				text: "Hello,\n\n" + "This is a confirmation that the password for your account " + user.email + " has been changed.\n" 
-			};
-			smtpTransport.sendMain(mailOptions, function(err){
-				req.flash("success", "Success! Yout passsword has been changed.");
-				done(err);
-			});
-		}],
-		function(err){
-			res.redirect("/campgrounds");
-		});
+            user.save(function(err) {
+              req.logIn(user, function(err) {
+                done(err, user);
+              });
+            });
+          })
+        } else {
+            req.flash("error", "Passwords do not match.");
+            return res.redirect('back');
+        }
+      });
+    },
+    function(user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'Gmail', 
+        auth: {
+          user: 'kevin.java.lin@gmail.com',
+          pass: process.env.GMAILPW
+        }
+      });
+      var mailOptions = {
+        to: user.email,
+        from: 'kevin.java.lin@gmail.com',
+        subject: 'Your password has been changed',
+        text: 'Hello,\n\n' +
+          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('success', 'Success! Your password has been changed.');
+        done(err);
+      });
+    }
+  ], function(err) {
+    res.redirect('/campgrounds');
+  });
 });
 
 // User profile
