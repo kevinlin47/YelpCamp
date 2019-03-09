@@ -44,7 +44,7 @@ router.get("/",function(req,res){
   		}
   		else
   		{
-  			res.render("campgrounds/index",{campgrounds:allcampgrounds, page:"campgrounds"});
+  			res.render("campgrounds/index",{campgrounds:allcampgrounds, page:"campgrounds", noMatch:noMatch});
   		}
   	});
   }
