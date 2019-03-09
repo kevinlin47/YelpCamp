@@ -83,7 +83,9 @@ router.get("/logout", function(req, res){
 //forgot password
 router.get("/forgot", function(req, res){
 	res.render("forgot");
-})
+});
+
+
 
 // User profile
 router.get("/users/:id", function(req, res){
