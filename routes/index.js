@@ -177,7 +177,7 @@ router.post("/reset/:token", function(req, res){
 
 							user.save(function(err){
 								req.logIn(user, function(err){
-									done(err, user);
+									return done(err, user);
 								});
 							});
 						});
