@@ -17,7 +17,16 @@ var geocoder=NodeGeoCoder(options);
 router.get("/",function(req,res){
   if(req.query.search)
   {
-
+      Campground.find({}, function(err,allcampgrounds){
+      if (err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        res.render("campgrounds/index",{campgrounds:allcampgrounds, page:"campgrounds"});
+      }
+    });
   }
   else
   {
@@ -31,7 +40,7 @@ router.get("/",function(req,res){
   		{
   			res.render("campgrounds/index",{campgrounds:allcampgrounds, page:"campgrounds"});
   		}
-  	})
+  	});
   }
 });
 
