@@ -3,7 +3,7 @@ var router=express.Router();
 var Campground=require("../models/campground");
 var middleware=require("../middleware");
 var NodeGeoCoder=require("node-geocoder");
-<<<<<<< HEAD
+
 var multer=require("multer");
 var storage=multer.diskStorage({
   filename: function(req, file, callback){
@@ -25,8 +25,6 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
-=======
->>>>>>> parent of a63863d... Add multer and cloudinary configurations
 
 var options={
 	provider: "google",
